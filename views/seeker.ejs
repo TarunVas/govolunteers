@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Make a Volunteering listing
+        </title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="stylesheet" href="/css/table.css"/>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet"/>
+
+        <style>
+            #heading{
+                font-size:58px;
+                font-family:Times, 'Times New Roman', serif;
+                font-style:boldx
+            }
+            h2{
+                color:crimson;
+            }
+        </style>
+        <script type="text/javascript">
+        
+
+ 
+            function validateForm() {
+                
+                 
+               
+                 textAlert="";
+                 var retval=true;
+                  
+                 mylocation = document.getElementById("mylocation");
+                description = document.getElementById("description");
+                volunteercount = document.getElementById("volunteercount");
+          
+
+                if ((mylocation.value == "") || (mylocation.value.length < 4) || (mylocation.value.length > 20) ){
+                    textAlert+="location must be 4 to 22 characters and not empty"+"<br>";
+                    retval=false;
+                    
+                  }
+    
+                        
+                  
+                  if (description.value == "") {
+                    textAlert+="description must be filled out"+"<br>";
+                    retval=false;
+                  }
+    
+                  if (volunteercount.value == "" ) {
+                    textAlert+="you need fill out the number of volunteers necessary for your project/business/organization"+"<br>";
+                    retval=false;
+                  }
+ 
+                  if (isNaN(volunteercount.value)) {
+                        textAlert+= "Please enter Numeric value for volunteer count";
+                        retval=false;
+                   } else {
+                    retval=true;
+            }
+            document.getElementById("alertbox").innerHTML=textAlert;
+             return retval;
+            }
+        
+            </script>
+    </head>
+    <body>
+        <h2 heading="h2" style="text-align:center">
+            Create a listing for volunteers
+        </h2>
+        <div id="alertbox" style="color:red;text-align: center;"> </div>
+        <form  action="/seeker" onsubmit="return validateForm();"  method="post">
+            <table>
+
+                <tr>
+                    <td>
+                        <label for="location">Location </label><br>
+                        <input type="text" id="mylocation" name="mylocation" value=""></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="description">Enter the Description of what you are looking for</label><br>
+                        <textarea type="text" id="description" name="description" value="" rows=4 cols=50></textarea>
+                     </td>
+                </tr>
+                 
+                <tr>
+                 
+                
+                    <td>
+                        <label for="volunteercount">Number of Volunteers </label><br>
+                         <input type="text" id="volunteercount" name="volunteercount" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+            </table>
+            
+            
+           
+            
+           
+        </form>
+    </body>
+</html>

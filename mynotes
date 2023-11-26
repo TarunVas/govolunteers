@@ -1,0 +1,15 @@
+ 
+ 
+ how to installl express
+ 
+ 
+ npm init -y
+ npm i express
+
+npm i --save-dev nodemon
+
+go to package.json repalce contents of script(under debug) with "devStart":"nodemon server.js"
+
+How to start server:
+npm run devStart
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="stylesheet" href="/css/table.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      <table align="center">
+          <tr>
+            
+              <td>
+                <a href="/seeker"> Create a listing</a>
+            </td>
+          </tr>
+      </table>  
+
+      <form action="/index" method="post">
+      <table align="center">
+        <thead>
+          <tr>
+
+            <td>
+              SNo
+            </td>
+            <td>
+              Description
+            </td>
+            <td>
+              Location
+          </td>
+          <td>
+            No of volunteers
+        </td>
+        <td>
+          Action
+      </td>
+        </tr>
+        </thead>
+        <tbody>
+
+          <% for(var i = 0; i<listings.length; i++) { %>
+          <tr>
+            <td>
+              <%= i +  1 %>
+            </td>
+            <td>
+              <%= listings[i].description %>
+            </td>
+            <td>
+              <%= listings[i].location %>
+            </td>
+            <td>
+              <%= listings[i].volunteercount %>
+            </td>
+            <% if (username==listings[i].username) { %>
+              
+      
+            <td>
+             <a href="/edit/<%= listings[i].id %>"><img src="/images/edit.png"></a>
+             <a href="/delete/<%= listings[i].id %>"><img src="/images/delete.png"></a>
+            </td> <% } %>
+
+
+          </tr>
+        <% } %> 
+        </tbody>
+    </table>  
+  </form>
+    </body>
+</html>

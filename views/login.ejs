@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet" href="/css/table.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
+
+
+     
+        <script>
+            function validatestring(txt,lbl,st,ml){
+                console.log(lbl+" "+txt + " "+st+" "+ml);
+                console.log((/^[a-zA-Z0-9\s]{st,ml}$/.test(txt)));
+                //txt is the textbox.value
+                //lbl is the name of the textbox
+                //st is the min length of the text
+                //ml is the maximum length of the text
+                retval1=true
+
+                if (txt.length <st || txt.length > ml)
+                    return false;
+                if ( /^[a-zA-Z0-9]+$/.test(txt)){
+                    return true;
+                }
+
+              else {
+                    textAlert+=lbl + " must be between 8 and 20 characters"+"<br>";
+                    retval1=false;
+                }
+
+                console.log(lbl+" "+retval1);
+
+
+                return retval1
+
+            }
+
+            function validateForm() {
+              
+             textAlert="";
+             retval=true;
+             
+              username=document.getElementById("username");
+              password=document.getElementById("password");
+
+              if (username.value == "") {
+                textAlert+="username must be filled out"+"<br>";
+                retval=false;
+                
+              }
+
+               retval =validatestring(username.value,"username",8,20);
+                   
+              
+              if (password.value == "") {
+                textAlert+="password must be filled out"+"<br>";
+                retval=false;
+              }
+              retval =validatestring(password.value,"password",4,20);
+
+              document.getElementById("alertbox").innerHTML=textAlert;
+              return retval;
+            }
+        </script>
+
+   <style>
+    body {
+      background-image: url('/images/volunteering-bg1.webp');
+      width:1368px;
+      height: 768px;
+    }
+    </style>
+    </head>
+    <body>
+        <div id="alertbox" style="color:red; text-align:center"></div>
+        <form action="/login" onsubmit="return validateForm()" method="post">
+        <table  style="text-align:center;" >
+            <tr>
+                <td   style="text-align:center; font-weight:bold" >
+                    Login
+                </td>
+            </tr>
+            <tr>
+                <td><label for="username">Username: </label><br>
+                 
+                   <input type="text" name="username" id="username"> 
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="passweord">Password: </label><br> 
+                    
+                       <input type="password" name="password" id="password"> 
+                    </td>
+            </tr>
+            <tr>
+                <td   style="text-align:center; font-weight:bold">
+                    <input type="submit" value="submit" style="text-align:center; font-weight:bold">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:center; font-weight:bold">
+                   First time user? <a href = "/createvolunteer">Click Here to register</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+    <script>
+        urlParams= new URLSearchParams(window.location.search);
+   
+        myParam = urlParams.get('error')
+       
+       if (myParam=="100"){
+           message="Please verify your login and Password";
+           document.getElementById("alertbox").innerHTML=message;
+
+       }
+   </script>
+    </body>
+</html>

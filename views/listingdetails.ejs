@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Make a Volunteering listing
+        </title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
+        <script>
+            function phonelen(gth) {
+                        if (gth.substring(3, 4) == '-' && gth.substring(7, 8) == '-') // 123-456-7890
+                    gth = gth.replace('-', '').replace('-', '');
+                else if (gth.substring(0, 1) == '(' && gth.substring(4, 5) == ')' && gth.substring(8, 9) == '-') // (123)456-7890
+                    gth = gth.replace('(', '').replace(')', '').replace('-', '');
+                else if (gth.substring(0, 1) == '(' && gth.substring(4, 5) == ')') // (123)4567890
+                    gth = gth.replace('(', '').replace(')', '');        
+                
+                if (!isNaN(gth) && gth.length == 10) {
+                    return true;
+    }
+            return false;}
+
+            function validateEmailAddress(emailAddress) { 
+                var atSymbol = emailAddress.indexOf("@"); 
+                var dotSymbol = emailAddress.lastIndexOf("."); 
+                var spaceSymbol = emailAddress.indexOf(" "); 
+    
+                if ((atSymbol != -1) && 
+                    (atSymbol != 0) && 
+                    (dotSymbol != -1) && 
+                    (dotSymbol != 0) && 
+                    (dotSymbol > atSymbol + 1) && 
+                    (emailAddress.length > dotSymbol + 1) && 
+                    (spaceSymbol == -1)) { 
+                    return true; 
+                } else { 
+                    return false; 
+                } 
+            } 
+
+
+            function validatestring(txt,lbl,st,ml){
+                console.log(lbl+" "+txt + " "+st+" "+ml);
+                console.log((/^[a-zA-Z0-9\s]{st,ml}$/.test(txt)));
+                //txt is the textbox.value
+                //lbl is the name of the textbox
+                //st is the min length of the text
+                //ml is the maximum length of the text
+                retval1=true
+
+                if (txt.length <st || txt.length > ml)
+                    return false;
+                if ( /^[a-zA-Z0-9]+$/.test(txt)){
+                    return true;
+                }
+
+              else {
+                    textAlert+=lbl + " must be between 8 and 20 characters"+"<br>";
+                    retval1=false;
+                }
+
+                console.log(lbl+" "+retval1);
+
+
+                return retval1
+
+            }
+            function validateForm() {
+             myform=document.forms[0];
+             textAlert="";
+             retval=true;
+             retval2=true;
+             retval3=true;
+             retval4=true;
+              username=document.getElementById("username");
+                password=document.getElementById("password");
+                fname=document.getElementById("fname");
+                lname=document.getElementById("lname");
+                email=document.getElementById("email");
+                phone=document.getElementById("phone");
+                volunteer=document.getElementById("volunteer")
+
+              if (username.value == "") {
+                textAlert+="username must be filled out"+"<br>";
+                retval=false;
+                
+              }
+
+               retval =validatestring(username.value,"username",8,20);
+                   
+              
+              if (password.value == "") {
+                textAlert+="password must be filled out"+"<br>";
+                retval=false;
+              }
+              retval =validatestring(password.value,"password",4,20);
+
+              if (fname.value == "") {
+                textAlert+="firstname must be filled out"+"<br>";
+                retval=false;
+              }
+              retval =validatestring(fname.value,"first name",4,20);
+
+              if (lname.value == "") {
+                textAlert+="lastname must be filled out"+"<br>";
+                retval=false;
+              }
+              retval =validatestring(lname.value,"last name",4,20);
+
+              if (email.value == "") {
+                textAlert+="email must be filled out"+"<br>";
+                retval=false;
+              }
+              //emailregex ="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+               retval2=(validateEmailAddress(email.value))?true:false;
+                 
+              if (retval2 == false){
+                  textAlert+="please check your email address<br>"
+                  retval=retval2
+              }
+
+
+
+              if (phone.value == "") {
+                textAlert+="phone must be filled out"+"<br>";
+                retval=false;
+              } 
+              //phoneregex="/^\(?(\d{3})\)?[-.]?(\d{3})[-.]?(\d{4})$/";
+              retval3=(phonelen(phone.value))?true:false;
+
+              if (retval3 == false){
+                  textAlert+="please check your phone number <br>"
+                  retval=retval3
+              }
+
+
+
+              document.getElementById("alertbox").innerHTML=textAlert;
+              return retval;
+            }
+            </script>
+        <style>
+            #heading{
+                font-size:58px;
+                font-family:Times, 'Times New Roman', serif;
+                font-style:boldx
+            }
+            h2{
+                color:crimson;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 heading="h2">
+            Sign up/login
+        </h2>
+        <div id="alertbox" style="color:red"> </div>
+        <form name="doc1" action="google.com" onsubmit="return validateForm()" method="post">
+            <table>
+
+                <tr>
+                    <td><label for="username">Location </label><br>
+                     <input type="text" id="username" name="username" value=""></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Timings </label><br>
+                        <input type="password" id="password" name="password" value="">
+                     </td>
+                </tr>
+                <tr>
+                    <td><label for="fname">Your Name </label><br>
+                        <input type="text" id="fname" name="fname" value=""></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="lname">Address </label><br>
+                        <input type="text" id="lname" name="lname" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email </label><br>
+            <input type="text" id="email" name="email" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="phone">phone number </label><br>
+            <input type="text" id="phone" name="phone" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="volunteer">number of volunteers </label><br>
+            <input type="text" id="volunteer" name="volunteer" value="">
+                    </td>
+                </tr>
+            </table>
+            
+            
+           
+            
+           
+        </form>
+    </body>
+</html>
